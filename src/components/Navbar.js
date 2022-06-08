@@ -10,7 +10,7 @@ function Navbar() {
       <div>
         <button className="btn btn-primary">Sign Up</button>
         <button className="btn btn-primary ms-2">Sign In</button>
-        <button className="btn btn-primary ms-2">Log Out</button>
+        <button className="btn btn-danger ms-2">Log Out</button>
       </div>
     </nav>
   );
