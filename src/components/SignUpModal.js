@@ -33,15 +33,27 @@ function SignUpModal() {
       );
       formRef.current.reset();
       setValidation("")
-    } catch (error) {}
+    } catch (error) {
+      if (error.code === "auth/invalid-email") {
+        setValidation("Email format invalid")
+      }
+      if (error.code === "auth/email-already-in-use") {
+        setValidation("Email already used")
+      }
+    }
   };
+
+  const closeModal = () => {
+    setValidation("")
+    toggleModals("close")
+  }
 
   return (
     <>
       {modalState.signUpModal && (
         <div className="position-fixed top-0 vw-100 vh-100">
           <div
-            onClick={() => toggleModals("close")}
+            onClick={closeModal}
             className="w-100 h-100 bg-dark bg-opacity-50 bg-white"
           ></div>
           <div
@@ -53,7 +65,7 @@ function SignUpModal() {
                 <div className="modal-header">
                   <h5 className="modal-title">Sign Up</h5>
                   <button
-                    onClick={() => toggleModals("close")}
+                    onClick={closeModal}
                     className="btn-close"
                   ></button>
                 </div>
