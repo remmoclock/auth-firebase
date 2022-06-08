@@ -3,12 +3,37 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../firebase-config";
 
 export const UserContext = createContext();
 
 export function UserContextProvider(props) {
+  // Google //
+
+  const signInGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        setModalState({
+          signUpModal: false,
+          signInModal: false,
+        });
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  };
+
   // User //
 
   const signUp = (email, pwd) =>
@@ -57,7 +82,14 @@ export function UserContextProvider(props) {
 
   return (
     <UserContext.Provider
-      value={{ modalState, toggleModals, signUp, currentUser, signIn }}
+      value={{
+        modalState,
+        toggleModals,
+        signUp,
+        currentUser,
+        signIn,
+        signInGoogle,
+      }}
     >
       {!loadingData && props.children}
     </UserContext.Provider>

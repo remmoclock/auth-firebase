@@ -7,7 +7,7 @@ import { auth } from "../firebase-config";
 
 function Navbar() {
   const navigate = useNavigate();
-  const { toggleModals, currentUser } = useContext(UserContext);
+  const { toggleModals, currentUser, signInGoogle } = useContext(UserContext);
   const logout = async () => {
     try {
       await signOut(auth);
@@ -36,6 +36,12 @@ function Navbar() {
               className="btn btn-primary ms-2"
             >
               Sign In
+            </button>
+            <button
+              onClick={() => signInGoogle()}
+              className="btn btn-primary ms-2"
+            >
+             Google Sign In
             </button>
           </div>
         )}
