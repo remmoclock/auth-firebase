@@ -3,7 +3,7 @@ import React from 'react'
 function Home() {
   return (
     <div className="cointainer p-5">
-      <h1 className="display-2 text-light">
+      <h1 className="display-3 text-light">
         Hi, Sign Up or Sign In
       </h1>
     </div>
