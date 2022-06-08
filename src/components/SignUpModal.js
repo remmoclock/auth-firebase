@@ -1,9 +1,10 @@
 import React, { useContext, useRef, useState } from "react";
 import { UserContext } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
 
 function SignUpModal() {
   const { toggleModals, modalState, signUp } = useContext(UserContext);
-
+  const navigate = useNavigate();
   const [validation, setValidation] = useState("");
 
   const inputs = useRef([]);
@@ -13,7 +14,7 @@ function SignUpModal() {
     }
   };
 
-  const formRef = useRef()
+  const formRef = useRef();
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -32,21 +33,23 @@ function SignUpModal() {
         inputs.current[1].value
       );
       formRef.current.reset();
-      setValidation("")
+      setValidation("");
+      toggleModals("close");
+      navigate("/private/private-home");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
-        setValidation("Email format invalid")
+        setValidation("Email format invalid");
       }
       if (error.code === "auth/email-already-in-use") {
-        setValidation("Email already used")
+        setValidation("Email already used");
       }
     }
   };
 
   const closeModal = () => {
-    setValidation("")
-    toggleModals("close")
-  }
+    setValidation("");
+    toggleModals("close");
+  };
 
   return (
     <>
@@ -64,14 +67,15 @@ function SignUpModal() {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title">Sign Up</h5>
-                  <button
-                    onClick={closeModal}
-                    className="btn-close"
-                  ></button>
+                  <button onClick={closeModal} className="btn-close"></button>
                 </div>
 
                 <div className="modal-body">
-                  <form ref={formRef} onSubmit={handleForm} className="sign-up-form">
+                  <form
+                    ref={formRef}
+                    onSubmit={handleForm}
+                    className="sign-up-form"
+                  >
                     <div className="mb-3">
                       <label htmlFor="signUpEmail" className="form-label">
                         Email
