@@ -3,7 +3,6 @@ import { UserContext } from "../context/userContext";
 
 function SignUpModal() {
   const { toggleModals, modalState } = useContext(UserContext);
-  console.log(modalState);
 
   return (
     <>
@@ -21,7 +20,10 @@ function SignUpModal() {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title">Sign Up</h5>
-                  <button onClick={() => toggleModals("close")} className="btn-close"></button>
+                  <button
+                    onClick={() => toggleModals("close")}
+                    className="btn-close"
+                  ></button>
                 </div>
 
                 <div className="modal-body">

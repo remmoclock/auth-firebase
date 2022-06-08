@@ -4,7 +4,7 @@ export const UserContext = createContext();
 
 export function UserContextProvider(props) {
   const [modalState, setModalState] = useState({
-    signUpModal: true,
+    signUpModal: false,
     signInModal: false,
   });
 
