@@ -34,7 +34,7 @@ function SignUpModal() {
       );
       formRef.current.reset();
       setValidation("");
-      toggleModals("close");
+      toggleModals("close"); 
       navigate("/private/private-home");
     } catch (error) {
       if (error.code === "auth/invalid-email") {

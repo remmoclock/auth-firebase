@@ -1,9 +1,21 @@
 import React, { useContext } from "react";
 import { UserContext } from "../context/userContext";
 import { Link } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase-config"
 
 function Navbar() {
+  const navigate = useNavigate();
   const { toggleModals } = useContext(UserContext);
+  const logout = async () => {
+try {
+  await signOut(auth)
+  navigate("/")
+} catch (error) {
+  alert("Error connexion Retry")
+}
+  }
 
   return (
     <nav className="navbar navbar-light bg-light px-4">
@@ -23,7 +35,11 @@ function Navbar() {
         >
           Sign In
         </button>
-        <button className="btn btn-danger ms-2">Log Out</button>
+        <button 
+        onClick={logout} 
+        className="btn btn-danger ms-2">
+          Log Out
+        </button>
       </div>
     </nav>
   );
