@@ -7,7 +7,7 @@ function Home() {
   return (
     <div className="cointainer p-5">
       <h1 className="display-3 text-light">
-        {currentUser ? "Welcome" : " Hi, Sign Up or Sign In"}
+        {currentUser ? "Welcome " + currentUser.email : " Hi, Sign Up or Sign In"}
       </h1>
     </div>
   );
