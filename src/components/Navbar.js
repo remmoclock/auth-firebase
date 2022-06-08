@@ -41,14 +41,21 @@ function Navbar() {
               onClick={() => signInGoogle()}
               className="btn btn-primary ms-2"
             >
-             Google Sign In
+              Google Sign In
             </button>
           </div>
         )}
         {currentUser && (
-          <button onClick={logout} className="btn btn-danger ms-2">
-            Log Out
-          </button>
+          <div>
+            <button className="btn btn ms-2">
+              <Link to="/private/private-home" className="navbar-brand">
+                Gif
+              </Link>
+            </button>
+            <button onClick={logout} className="btn btn-danger ms-2">
+              Log Out
+            </button>
+          </div>
         )}
       </div>
     </nav>

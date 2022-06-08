@@ -57,7 +57,7 @@ function SignUpModal() {
         <div className="position-fixed top-0 vw-100 vh-100">
           <div
             onClick={closeModal}
-            className="w-100 h-100 bg-dark bg-opacity-50 bg-white"
+            className="w-100 h-100 bg-dark bg-opacity-25 bg-white"
           ></div>
           <div
             className="position-absolute top-50 start-50 translate-middle"

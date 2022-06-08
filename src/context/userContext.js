@@ -7,30 +7,26 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../firebase-config";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
 export function UserContextProvider(props) {
+  const navigate = useNavigate()
   // Google //
 
   const signInGoogle = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then(() => {
         setModalState({
           signUpModal: false,
           signInModal: false,
         });
+        navigate("/private/private-home")
       })
       .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
+    navigate("/private/private-home")
       });
   };
 
